@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Application">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="dob" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="age" Type="Int32" Nullable="false" />
+    <Property Name="branch_id" Type="Int32" Nullable="false" />
+    <Property Name="classid" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Branch" Relationship="Self.FK__Applicati__branc__20C1E124" FromRole="Application" ToRole="Branch" />
+    <NavigationProperty Name="Processed_Application" Relationship="Self.FK__Processed__appli__1ED998B2" FromRole="Application" ToRole="Processed_Application" />
+  </EntityType>
+  <EntityType Name="Branch">
+    <Key>
+      <PropertyRef Name="branch_id" />
+    </Key>
+    <Property Name="branch_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="contact_person" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Applications" Relationship="Self.FK__Applicati__branc__20C1E124" FromRole="Branch" ToRole="Application" />
+  </EntityType>
+  <EntityType Name="Processed_Application">
+    <Key>
+      <PropertyRef Name="applicationid" />
+    </Key>
+    <Property Name="applicationid" Type="Int32" Nullable="false" />
+    <Property Name="comments" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="date_of_resolve" Type="DateTime" Precision="0" />
+    <Property Name="resolvedby" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Application" Relationship="Self.FK__Processed__appli__1ED998B2" FromRole="Processed_Application" ToRole="Application" />
+  </EntityType>
+  <EntityType Name="Report">
+    <Key>
+      <PropertyRef Name="Category" />
+    </Key>
+    <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="lstApplications" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TotalByCategory" Type="Int32" Nullable="false" />
+    <Property Name="TotalNoOfApplications" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Seat">
+    <Key>
+      <PropertyRef Name="branch_id" />
+      <PropertyRef Name="classid" />
+      <PropertyRef Name="seats" />
+    </Key>
+    <Property Name="branch_id" Type="Int32" Nullable="false" />
+    <Property Name="classid" Type="Int32" Nullable="false" />
+    <Property Name="seats" Type="Int32" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Applicati__branc__20C1E124">
+    <End Role="Branch" Type="Self.Branch" Multiplicity="1" />
+    <End Role="Application" Type="Self.Application" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Branch">
+        <PropertyRef Name="branch_id" />
+      </Principal>
+      <Dependent Role="Application">
+        <PropertyRef Name="branch_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Processed__appli__1ED998B2">
+    <End Role="Application" Type="Self.Application" Multiplicity="1" />
+    <End Role="Processed_Application" Type="Self.Processed_Application" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Application">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Processed_Application">
+        <PropertyRef Name="applicationid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="OAF_DBEntities7" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Applications" EntityType="Self.Application" />
+    <EntitySet Name="Branches" EntityType="Self.Branch" />
+    <EntitySet Name="Processed_Applications" EntityType="Self.Processed_Application" />
+    <EntitySet Name="Reports" EntityType="Self.Report" />
+    <EntitySet Name="Seats" EntityType="Self.Seat" />
+    <AssociationSet Name="FK__Applicati__branc__20C1E124" Association="Self.FK__Applicati__branc__20C1E124">
+      <End Role="Branch" EntitySet="Branches" />
+      <End Role="Application" EntitySet="Applications" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Processed__appli__1ED998B2" Association="Self.FK__Processed__appli__1ED998B2">
+      <End Role="Application" EntitySet="Applications" />
+      <End Role="Processed_Application" EntitySet="Processed_Applications" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

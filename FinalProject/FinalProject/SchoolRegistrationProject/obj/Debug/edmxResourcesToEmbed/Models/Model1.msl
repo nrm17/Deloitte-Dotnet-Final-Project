@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="OAF_DBEntities7">
+    <EntitySetMapping Name="Applications">
+      <EntityTypeMapping TypeName="Model.Application">
+        <MappingFragment StoreEntitySet="Application">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="dob" ColumnName="dob" />
+          <ScalarProperty Name="age" ColumnName="age" />
+          <ScalarProperty Name="branch_id" ColumnName="branch_id" />
+          <ScalarProperty Name="classid" ColumnName="classid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Branches">
+      <EntityTypeMapping TypeName="Model.Branch">
+        <MappingFragment StoreEntitySet="Branch">
+          <ScalarProperty Name="branch_id" ColumnName="branch_id" />
+          <ScalarProperty Name="contact_person" ColumnName="contact_person" />
+          <ScalarProperty Name="location" ColumnName="location" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Processed_Applications">
+      <EntityTypeMapping TypeName="Model.Processed_Application">
+        <MappingFragment StoreEntitySet="Processed Application">
+          <ScalarProperty Name="applicationid" ColumnName="applicationid" />
+          <ScalarProperty Name="comments" ColumnName="comments" />
+          <ScalarProperty Name="date_of_resolve" ColumnName="date_of_resolve" />
+          <ScalarProperty Name="resolvedby" ColumnName="resolvedby" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Reports">
+      <EntityTypeMapping TypeName="Model.Report">
+        <MappingFragment StoreEntitySet="Report">
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="lstApplications" ColumnName="lstApplications" />
+          <ScalarProperty Name="TotalByCategory" ColumnName="TotalByCategory" />
+          <ScalarProperty Name="TotalNoOfApplications" ColumnName="TotalNoOfApplications" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Seats">
+      <EntityTypeMapping TypeName="Model.Seat">
+        <MappingFragment StoreEntitySet="Seat">
+          <ScalarProperty Name="branch_id" ColumnName="branch_id" />
+          <ScalarProperty Name="classid" ColumnName="classid" />
+          <ScalarProperty Name="seats" ColumnName="seats" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

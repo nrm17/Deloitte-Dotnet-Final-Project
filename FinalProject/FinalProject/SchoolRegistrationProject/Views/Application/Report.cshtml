@@ -1,0 +1,46 @@
+﻿@model IEnumerable<SchoolRegistrationProject.Models.POCO>
+@{
+    ViewBag.Title = "Report";
+}
+
+<h2>Report</h2>
+@using (Html.BeginForm())
+{
+    <h2>Application Reports</h2>
+    <label>Select :</label>@Html.DropDownList("ddlpr", new List<SelectListItem> { new SelectListItem { Text = "Processed", Value = "Processed" }, new SelectListItem { Text = "Not Processed", Value = "Not Processed" } });
+    <label>Total Applications : </label>
+    @Html.TextBox("totalcount", Session["totalcount"]);
+    <label>Processed :</label>
+    @Html.TextBox("processedcount", Session["processedcount"]);
+    <input type="submit" value="cLICK TO GENERATE REPORT" />
+
+    //  ABCInternationalSchool.Models.POCO ls = (ABCInternationalSchool.Models.POCO)Session["datta"];
+    <table border="1">
+        <tr>
+            <th>Id</th>
+            <th>Candidate Name</th>
+            <th>Age</th>
+            <th>Address</th>
+            <th>Date Of Birth</th>
+            <th>Branch Id</th>
+            <th>Class Id</th>
+        </tr>
+        @foreach (var x in Model)
+        {
+            <tr>
+                <td>@x.Id</td>
+                <td>@x.Name</td>
+                <td>@x.Age</td>
+                <td>@x.Address</td>
+                <td>@x.DOB</td>
+                <td>@x.Branch_id</td>
+                <td>@x.Class_id</td>
+            </tr>
+        }
+
+    </table>
+
+    @Html.ActionLink("Check Status", "StatusUpdate")
+    @Html.ActionLink("Go back to home ", "HomePage")
+}
+

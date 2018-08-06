@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewBag.Title = "StatusUpdate";
+}
+
+<h2>Process Application Form</h2>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    <table>
+        <tr>
+            <td>Enter Application ID : </td>
+            <td>
+                @Html.TextBox("txtid")
+            </td>
+            <td>
+                <input type="submit" name="Command" value="Status" />
+            </td>
+        </tr>
+        <tr>
+            <td>Enter Comment : </td>
+            <td>
+                @Html.TextBox("txtcomment")
+            </td>
+        </tr>
+        <tr>
+            <td align="center" colspan="3">
+                <input type="submit" name="Command" value="Update" />
+            </td>
+        </tr>
+    </table>
+
+    @Html.ActionLink("Check Report", "Report")
+    @Html.ActionLink("Go back to home ", "HomePage")
+}
+
+
+
+

@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "Status";
+}
+
+<h2>Status</h2>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    <table>
+        <tr>
+            <td>
+                Enter Your application ID
+            </td>
+            <td>
+                @Html.TextBox("txtid");
+            </td>
+            <td>
+                <input type="submit" id="btnid" />
+            </td>
+        </tr>
+    </table>
+    @Html.ActionLink("Insert Application", "InsertApplication")
+    @Html.ActionLink("Go back to home ", "HomePage")
+}
+
